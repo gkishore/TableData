@@ -1,0 +1,56 @@
+.fixed_header{
+    max-width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    overflow: auto;
+    border: 1px solid #ddd;
+    margin: 10px;
+
+    tbody{
+      display:block;
+      width: 100%;
+      overflow: auto;
+      height: 200px;
+    }
+
+    thead {
+      background: black;
+      color:#fff; 
+
+      tr {
+        display: block;
+      }
+    }
+    
+    th, td {
+      padding: 5px;
+      text-align: left;
+      white-space: nowrap;
+      max-width: 100px !important;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 100px;
+    }
+
+    tfoot {
+      td {
+        background: #ddd;
+
+        select {
+          margin-right: 10px;
+        }
+
+        a {
+          color : blue;
+          display: inline-block;
+          margin-right: 10px;
+          cursor: pointer;
+
+          &.disabled {
+            pointer-events: none;
+            color:  #ccc;
+          }
+        }
+      }
+    }
+}

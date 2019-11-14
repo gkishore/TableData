@@ -1,0 +1,5 @@
+<app-data-grid [columnDefn]="columnDefn" [actionRef]="actions" [rows]="rows | async"></app-data-grid>
+
+<ng-template #actions let-row="row">
+  <button (click)="submitRow(row)" type="button">submit row</button>
+</ng-template>

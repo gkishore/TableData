@@ -1,0 +1,45 @@
+<div class="fixed_header">
+	<table>
+		<thead>
+			<tr>
+				<th *ngIf="actionRef">
+					<span class="text">
+              Actions
+            </span>
+          </th>
+					<th *ngFor="let col of columnDefn" [ngStyle]="{'min-width': col.width, 'width': col.width}">
+						<span class="text">
+        {{col.displayName || col.name}} 
+            </span>
+        </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of currentRows">
+          <td *ngIf="actionRef">
+            <ng-container *ngTemplateOutlet="actionRef; context: {row: row}"></ng-container>
+          </td>
+          <td *ngFor="let col of columnDefn" 
+          [ngStyle]="{'min-width': col.width, 'width': col.width}">
+            {{col.templateFn ? col.templateFn(row, col) : row[col.name]}}
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td [attr.colspan]="columnDefn.length + 1">
+           size:  <select [(ngModel)]="pagination.size" (change)="paginate(0)">
+              <option *ngFor="let opt of pagination.options" [value]="opt">{{opt}}</option>
+            </select>
+
+            <a (click)="first()" [class.disabled]="pagination.isFirst">first</a>
+            <a (click)="prev()" [class.disabled]="pagination.isFirst">prev</a>
+            <a (click)="next()" [class.disabled]="pagination.isLast">next</a>
+            <a (click)="last()" [class.disabled]="pagination.isLast">last</a>
+
+            <small>showing {{pagination.number + 1}} / {{pagination.totalPages}}</small>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+</div>
